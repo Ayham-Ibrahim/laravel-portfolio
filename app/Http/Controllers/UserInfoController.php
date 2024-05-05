@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserInfoController extends Controller
 {
