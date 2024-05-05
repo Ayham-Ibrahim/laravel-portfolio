@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\ApiResponseTrait;
+use App\Http\Traits\UploadFileTrait;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+
 class UserInfoController extends Controller
 {
+    use ApiResponseTrait,UploadFileTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         try {
-
+           
         } catch (\Throwable $th) {
             Log::error($th);
             return $this->customeResponse(null,"Error, There somthing Rong here",500);

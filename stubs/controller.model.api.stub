@@ -6,17 +6,20 @@ use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedRequests }}
 use Illuminate\Support\Facades\Log;
+use App\Http\Traits\UploadFileTrait;
+use App\Http\Traits\ApiResponseTrait;
 
 
 class {{ class }} extends Controller
 {
+    use ApiResponseTrait,UploadFileTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         try {
-
+           
         } catch (\Throwable $th) {
             Log::error($th);
             return $this->customeResponse(null,"Error, There somthing Rong here",500);
