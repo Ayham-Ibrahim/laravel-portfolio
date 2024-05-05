@@ -1,14 +1,11 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Http\Controllers;
 
-use {{ namespacedModel }};
-use {{ rootNamespace }}Http\Controllers\Controller;
-use {{ namespacedRequests }}
-use Illuminate\Support\Facades\Log;
+use App\Models\UserInfo;
+use Illuminate\Http\Request;
 
-
-class {{ class }} extends Controller
+class UserInfoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +23,7 @@ class {{ class }} extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store({{ storeRequest }} $request)
+    public function store(Request $request)
     {
         try {
 
@@ -39,7 +36,7 @@ class {{ class }} extends Controller
     /**
      * Display the specified resource.
      */
-    public function show({{ model }} ${{ modelVariable }})
+    public function show(UserInfo $userInfo)
     {
         try {
 
@@ -52,7 +49,7 @@ class {{ class }} extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
+    public function update(Request $request, UserInfo $userInfo)
     {
         try {
 
@@ -65,7 +62,7 @@ class {{ class }} extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy({{ model }} ${{ modelVariable }})
+    public function destroy(UserInfo $userInfo)
     {
         try {
 
