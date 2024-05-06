@@ -27,6 +27,7 @@ class UserInfoController extends Controller
     //         return $this->customeResponse(null,"Error, There somthing Rong here",500);
     //     }
     // }
+    // 
 
     /**
      * Store a newly created resource in storage.
