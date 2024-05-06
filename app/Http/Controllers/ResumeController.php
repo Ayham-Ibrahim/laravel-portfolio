@@ -71,7 +71,7 @@ class ResumeController extends Controller
         try {
             $resume= Resume::find($id);
             $resume->to_date= $request->input('to_date') ?? $resume->to_date;
-            $resume->from_date= $request->input('from_date') ?? $resume->form_date;
+            $resume->from_date= $request->input('from_date') ?? $resume->from_date;
             $resume->description= $request->input('description') ?? $resume->description;
             $resume->institute= $request->input('institute') ?? $resume->institute;
 
