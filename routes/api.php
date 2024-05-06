@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserInfoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,6 @@ Route::controller(AuthController::class)->group(function () {
 
 
 
-Route::apiResource('employees', EmployeeController::class);
 Route::apiResource('messages', MessageController::class);
 Route::get('/skills', [SkillController::class, 'index']);
 Route::post('/add/skills', [SkillController::class, 'store']);
@@ -47,3 +47,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+
+
+Route::apiResource('/userInfo',UserInfoController::class);

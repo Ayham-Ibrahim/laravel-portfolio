@@ -24,8 +24,6 @@ class SkillRequest extends FormRequest
         return [
             'title' => 'required','string',
             'avarage' => 'required','integer',
-            
-
         ];
     }
 }
