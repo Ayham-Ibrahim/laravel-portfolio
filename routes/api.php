@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\MessageController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,7 +17,7 @@ use App\Http\Controllers\SkillController;
 */
 
 Route::apiResource('employees', EmployeeController::class);
-
+Route::apiResource('messages', MessageController::class);
 Route::get('/skills', [SkillController::class, 'index']);
 Route::post('/add/skills', [SkillController::class, 'store']);
 Route::get('/show/skills/{id}', [SkillController::class, 'show']);
@@ -26,3 +28,4 @@ Route::delete('/delete/skills/{id}', [SkillController::class, 'destroy']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
