@@ -6,14 +6,15 @@ use App\Http\Traits\ApiResponseTrait;
 use App\Http\Traits\UploadFileTrait;
 use App\Models\Skill;
 use Illuminate\Http\Request;
-use App\Http\Resources\SkillResources;
+use App\Http\Resources\SkillResource;
 use App\Http\Requests\SkillRequest;
 use Illuminate\Support\Facades\Log;
 
 
 class SkillController extends Controller
 {
-    use ApiResponseTrait,UploadFileTrait;
+    use ApiResponseTrait, UploadFileTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -21,11 +22,10 @@ class SkillController extends Controller
     {
         try {
             $skills = Skill::all();
-            return $this->customeResponse(SkillResource::collection($skills),"Done",200);
-            
+            return $this->customeResponse(SkillResource::collection($skills), "Done", 200);
         } catch (\Throwable $th) {
             Log::error($th);
-            return $this->customeResponse(null,"Error, There somthing Rong here",500);
+            return $this->customeResponse(null, "Error, Something went wrong", 500);
         }
     }
 
@@ -35,18 +35,15 @@ class SkillController extends Controller
     public function store(SkillRequest $request)
     {
         try {
-            $skills = Skill::create([
-                'title'  =>$request->title,
-                'average'   =>$request->average,
-                
+            $skill = Skill::create([
+                'title' => $request->title,
+                'avarage' => $request->avarage,
             ]);
-            if ($request->has('project_id')) {
-                $skill->projects()->attach($request->input('project_id'));
-            }
-            return $this->customeResponse(new SkillResource($skills), 'skill Created Successfuly', 200);
+
+            return $this->customeResponse(new SkillResource($skill), 'Skill created successfully', 200);
         } catch (\Throwable $th) {
             Log::error($th);
-            return $this->customeResponse(null,"Error, There somthing Rong here",500);
+            return $this->customeResponse(null, "Error, Something went wrong", 500);
         }
     }
 
@@ -59,7 +56,7 @@ class SkillController extends Controller
             return $this->customeResponse(new SkillResource($skill), 'Done', 200);
         } catch (\Throwable $th) {
             Log::error($th);
-            return $this->customeResponse(null,"Error, There somthing Rong here",500);
+            return $this->customeResponse(null, "Error, Something went wrong", 500);
         }
     }
 
@@ -69,16 +66,14 @@ class SkillController extends Controller
     public function update(SkillRequest $request, Skill $skill)
     {
         try {
-            $skill->title= $request->input('title') ?? $skill->title;
-            $skill->average= $request->input('average') ?? $skill->average;
+            $skill->title = $request->input('title') ?? $skill->title;
+            $skill->avarage = $request->input('avarage') ?? $skill->avarage;
             $skill->save();
-            if ($request->has('project_id')) {
-                $skill->projects()->sync($request->input('project_id'));
-            }
+            
             return $this->customeResponse(new SkillResource($skill), 'Done', 200);
         } catch (\Throwable $th) {
             Log::error($th);
-            return $this->customeResponse(null,"Error, There somthing Rong here",500);
+            return $this->customeResponse(null, "Error, Something went wrong", 500);
         }
     }
 
@@ -88,12 +83,11 @@ class SkillController extends Controller
     public function destroy(Skill $skill)
     {
         try {
-            $skill->projects()->detach();
             $skill->delete();
-            return $this->customeResponse("", 'skill deleted successfully', 200);
+            return $this->customeResponse("", 'Skill deleted successfully', 200);
         } catch (\Throwable $th) {
             Log::error($th);
-            return $this->customeResponse(null,"Error, There somthing Rong here",500);
+            return $this->customeResponse(null, "Error, Something went wrong", 500);
         }
     }
 }

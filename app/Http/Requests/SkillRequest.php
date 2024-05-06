@@ -23,8 +23,8 @@ class SkillRequest extends FormRequest
     {
         return [
             'title' => 'required','string',
-            'average' => 'required','integer',
-            // 'employee_id' => ['required','array'],
+            'avarage' => 'required','integer',
+            
 
         ];
     }

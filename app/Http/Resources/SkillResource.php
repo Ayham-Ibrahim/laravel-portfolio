@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
-
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,7 +16,7 @@ class SkillResource extends JsonResource
     {
         return [
         'title'=>$this->title,
-        'average'=>$this->average,
+        'avarage'=>$this->avarage,
         ]
         ;
     }
