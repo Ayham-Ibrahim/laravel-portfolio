@@ -34,7 +34,7 @@ class UserInfoController extends Controller
      */
     public function store(UserInfoRequest $request)
     {
-        // try {
+        try {
             $first_image_path = $this->UploadFile($request,'images','first_image','porto-images');
             $second_image_path = $this->UploadFile($request,'images','second_image','porto-images');
             $file_path = $this->UploadFile($request,'cv','cv','porto-files');
@@ -52,10 +52,10 @@ class UserInfoController extends Controller
                 'cv'           => $file_path,
             ]);
             return $this->customeResponse(new UserInfoResource($userInfo),"UserInfo created successfully",200);
-        // } catch (\Throwable $th) {
-        //     Log::error($th);
-        //     return $this->customeResponse(null,"Error, There somthing Rong here",500);
-        // }
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return $this->customeResponse(null,"Error, There somthing Rong here",500);
+        }
     }
 
     /**
