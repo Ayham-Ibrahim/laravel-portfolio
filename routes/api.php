@@ -3,7 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SkillController;
+
 use App\Http\Controllers\MessageController;
+
+use App\Http\Controllers\AuthController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +20,15 @@ use App\Http\Controllers\MessageController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
+
+});
+
 
 Route::apiResource('employees', EmployeeController::class);
 Route::apiResource('messages', MessageController::class);
