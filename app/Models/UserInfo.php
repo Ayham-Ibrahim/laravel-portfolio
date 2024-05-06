@@ -11,6 +11,16 @@ class UserInfo extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        //
+        'name',
+        'phone_number',
+        'birth_date',
+        'country',
+        'city',
+        'address',
+        'website',
+        'job_title',
+        'first_image',
+        'second_image',
+        'cv'
     ];
 }
