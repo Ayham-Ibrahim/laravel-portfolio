@@ -2,7 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use  App\Http\Controllers\SkillController;
+
+use App\Http\Controllers\SkillController;
+
+use App\Http\Controllers\MessageController;
+
+use App\Http\Controllers\AuthController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +23,27 @@ use  App\Http\Controllers\SkillController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
+
 });
 
-// Route::apiResource('skills', SkillController::class);
 
+
+Route::apiResource('employees', EmployeeController::class);
+Route::apiResource('messages', MessageController::class);
 Route::get('/skills', [SkillController::class, 'index']);
 Route::post('/add/skills', [SkillController::class, 'store']);
 Route::get('/show/skills/{id}', [SkillController::class, 'show']);
 Route::put('/udate/skills/{id}', [SkillController::class, 'update']);
 Route::delete('/delete/skills/{id}', [SkillController::class, 'destroy']);
+
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 
