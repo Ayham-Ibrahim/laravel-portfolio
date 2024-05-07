@@ -8,6 +8,7 @@ use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Resources\SkillResource;
 use App\Http\Requests\SkillRequest;
+use App\Http\Requests\UpdateSkillRequest;
 use Illuminate\Support\Facades\Log;
 
 
@@ -63,7 +64,7 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SkillRequest $request, Skill $skill)
+    public function update(UpdateSkillRequest $request, Skill $skill)
     {
         try {
             $skill->title = $request->input('title') ?? $skill->title;
