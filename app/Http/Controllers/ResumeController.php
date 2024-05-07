@@ -42,7 +42,7 @@ class ResumeController extends Controller
                 'description' => $request->description,
                 'institute' => $request->institute,
             ]);
-             return $this->customeResponse(new ResumeResource($resume), 'Resume Created Successfully', 200);
+            return $this->customeResponse(new ResumeResource($resume), 'Resume Created Successfully', 200);
         } catch (\Throwable $th) {
             Log::error($th);
             return $this->customeResponse(null,"Error , Resume did not Create ",500);
@@ -52,10 +52,9 @@ class ResumeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show(Resume $resume)
     {
         try {
-             $resume = Resume::find($id);
             return $this->customeResponse(new ResumeResource($resume), 'show is Done ', 200);
         } catch (\Throwable $th) {
             Log::error($th);
@@ -66,15 +65,13 @@ class ResumeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateResumeRequest $request, Resume $resume , $id)
+    public function update(UpdateResumeRequest $request, Resume $resume)
     {
         try {
-            $resume= Resume::find($id);
             $resume->to_date= $request->input('to_date') ?? $resume->to_date;
             $resume->from_date= $request->input('from_date') ?? $resume->from_date;
             $resume->description= $request->input('description') ?? $resume->description;
             $resume->institute= $request->input('institute') ?? $resume->institute;
-
             $resume->save();
             return $this->customeResponse(new ResumeResource($resume), 'Update is Done', 200);
         } catch (\Throwable $th) {
@@ -87,9 +84,8 @@ class ResumeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Resume $resume)
     {
-        $resume = Resume::find($id);
         try {
             $resume->delete();
             return $this->customeResponse("", ' deleted  resume successfully', 200);

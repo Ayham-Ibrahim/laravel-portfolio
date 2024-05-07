@@ -22,10 +22,10 @@ class StoreResumeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'to_date' => 'required',
-            'from_date' => 'required',
-            'description' => 'required',
-            'institute' => 'required',
+            'to_date' => 'required|date',
+            'from_date' => 'required|date',
+            'description' => 'required|string|max:1024',
+            'institute' => 'required|string|max:255',
         ];
     }
 }
