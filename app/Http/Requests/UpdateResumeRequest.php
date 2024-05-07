@@ -22,10 +22,10 @@ class UpdateResumeRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'to_date' => 'nullable',
-                'from_date' => 'nullable',
-                'description' => 'nullable',
-                'institute' => 'nullable',
+                'to_date' => 'nullable|date',
+                'from_date' => 'nullable|date',
+                'description' => 'nullable|string|max:1024',
+                'institute' => 'nullable|string|max:255',
         ];
     }
 }
