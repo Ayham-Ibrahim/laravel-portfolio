@@ -2,58 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\ApiResponseTrait;
-use App\Http\Traits\UploadFileTrait;
+
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use App\Http\Traits\UploadFileTrait;
+use App\Http\Traits\ApiResponseTrait;
+use App\Http\Requests\MessageRequest;
+use App\Http\Resources\MessageResource;
 
 class MessageController extends Controller
 {
-    use ApiResponseTrait,UploadFileTrait;
+    use ApiResponseTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
         try {
             $messages = Message::all();
-            return response()->json(
-                [
-                    'status' => 'success',
-                    'messages'=> $messages
-                ]
-            );
+            return $this->customeResponse(MessageResource::collection($messages),'Done',200);
         } catch (\Throwable $th) {
             Log::error($th);
-            return response()->json(
-                [
-                    'status' => 'failed',
-                ]
-
-            );
+            return $this->customeResponse(null,"Error, There somthing Rong here",500);
         }
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MessageRequest $request)
     {
         try {
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|max:255',
-                'subject' => 'required|string|max:255',
-                'body' => 'required|string',
+            $message = Message::create([
+                'name'       =>$request->name,
+                'email'      =>$request->email,
+                'subject'    =>$request->subject,
+                'body'       =>$request->body,
             ]);
-            $message = Message::create($validatedData);
-            return response()->json([
-                'status' => 'success',
-                'message' => $message
-            ], 201);
+            return $this->customeResponse(new MessageResource($message),'Message created successfully',200);
         } catch (\Throwable $th) {
             Log::error($th);
             return $this->customeResponse(null,"Error, There somthing Rong here",500);
@@ -66,13 +53,7 @@ class MessageController extends Controller
     public function show(Message $message)
     {
         try {
-
-            return response()->json(
-                [
-                    'status'=>'success',
-                    'message'=>$message
-                ]
-            );
+            return $this->customeResponse(new MessageResource($message),'Done',200);
         } catch (\Throwable $th) {
             Log::error($th);
             return $this->customeResponse(null,"Error, There somthing Rong here",500);
@@ -85,7 +66,12 @@ class MessageController extends Controller
     public function update(Request $request, Message $message)
     {
         try {
-
+        $message->name = $request->input('name') ?? $message->name;
+        $message->email = $request->input('email') ?? $message->email;
+        $message->subject = $request->input('subject') ?? $message->subject;
+        $message->body = $request->input('body') ?? $message->body;
+        $message->save();
+        return $this->customeResponse(new MessageResource($message),'Message updated successfully',200);
         } catch (\Throwable $th) {
             Log::error($th);
             return $this->customeResponse(null,"Error, There somthing Rong here",500);
@@ -99,10 +85,7 @@ class MessageController extends Controller
     {
         try {
             $message->delete();
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Message deleted successfully'
-            ]);
+            return $this->customeResponse(null,'Message deleted successfully',200);
         } catch (\Throwable $th) {
             Log::error($th);
             return $this->customeResponse(null,"Error, There somthing Rong here",500);

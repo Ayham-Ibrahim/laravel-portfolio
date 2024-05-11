@@ -13,17 +13,12 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone_number');
-            $table->date('birth_date');
-            $table->string('country');
-            $table->string('city');
-            $table->string('address');
-            $table->string('website');
-            $table->string('job_title');
-            $table->string('first_image');
-            $table->string('second_image');
-            $table->string('cv');
+            $table->string('title');
+            $table->date('date');
+            $table->string('description');
+            $table->string('link');
+            $table->string('github_repo');
+            $table->string('image');
             $table->softDeletes();
             $table->timestamps();
         });

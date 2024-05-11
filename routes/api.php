@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\UserInfoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ResumeController;
-
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SkillController;
+
+use App\Http\Controllers\ResumeController;
 
 use App\Http\Controllers\MessageController;
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\UserInfoController;
 
 
 
@@ -38,15 +39,18 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
-
-
 Route::apiResource('messages', MessageController::class);
+
+Route::apiResource('/userInfo',UserInfoController::class);
+
 Route::get('/skills', [SkillController::class, 'index']);
 Route::post('/add/skills', [SkillController::class, 'store']);
 Route::get('/show/skills/{id}', [SkillController::class, 'show']);
 Route::put('/udate/skills/{id}', [SkillController::class, 'update']);
 Route::delete('/delete/skills/{id}', [SkillController::class, 'destroy']);
 
+Route::get('/projects', [ProjectController::class, 'index']);
+Route::get('project/{project}', [ProjectController::class, 'show']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -55,4 +59,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::apiResource('/userInfo',UserInfoController::class);
