@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('resume-database', function (Blueprint $table) {
-            //
+        Schema::create('skills', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->integer('avarage');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('resume-database', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('skills');
     }
 };

@@ -11,12 +11,17 @@ class Project extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'id',
+        'title',
+        'date',
+        'description',
+        'link',
+        'github_repo',
+        'image',
     ];
 
     public function skills()
     {
-        return $this->belongsToMany(Skill::class);
+        return $this->belongsToMany(Skill::class,'project_skill');
     }
 }
 
