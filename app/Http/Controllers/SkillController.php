@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\ApiResponseTrait;
-use App\Http\Traits\UploadFileTrait;
 use App\Models\Skill;
 use Illuminate\Http\Request;
-use App\Http\Resources\SkillResource;
 use App\Http\Requests\SkillRequest;
 use App\Http\Requests\UpdateSkillRequest;
 use Illuminate\Support\Facades\Log;
+use App\Http\Traits\UploadFileTrait;
+use App\Http\Resources\SkillResource;
+use App\Http\Traits\ApiResponseTrait;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\UpdateSkillRequest;
 
 
 class SkillController extends Controller
@@ -22,7 +24,9 @@ class SkillController extends Controller
     public function index()
     {
         try {
-            $skills = Skill::all();
+            $skills = Cache::remember('skills', now()->addMinutes(120), function () {
+                return Skill::all();
+            });
             return $this->customeResponse(SkillResource::collection($skills), "Done", 200);
         } catch (\Throwable $th) {
             Log::error($th);

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSkillRequest extends FormRequest
+class ProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,12 @@ class UpdateSkillRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'nullable','string',
-            'avarage' => 'nullable','integer',
+            'title' => ['required','string'],
+            'date' => ['required','date'],
+            'description' => ['required','string'],
+            'image' => ['required','image','mimes:jpeg,png,jpg,gif'],
+            'link' => ['required','string'],
+            'github_repo' => ['required','url'],
         ];
     }
 }

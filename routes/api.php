@@ -25,12 +25,9 @@ use App\Http\Controllers\UserInfoController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('/resume/index', [ResumeController::class,'index']);
-Route::post('/resume/store', [ResumeController::class,'store']);
-Route::get('/resume/show/{id}', [ResumeController::class,'show']);
-Route::put('/resume/update/{id}',[ResumeController::class, 'update']);
-Route::delete('/resume/delete/{id}',[ResumeController::class, 'destroy']);
 
+
+################## Auth #############################
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
@@ -39,18 +36,44 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
+
+Route::middleware('auth')->group(function () {
+
+});
+
+
+################## messages #############################
 Route::apiResource('messages', MessageController::class);
 
+
+################## userInfo #############################
 Route::apiResource('/userInfo',UserInfoController::class);
 
-Route::get('/skills', [SkillController::class, 'index']);
-Route::post('/add/skills', [SkillController::class, 'store']);
-Route::get('/show/skills/{id}', [SkillController::class, 'show']);
-Route::put('/udate/skills/{id}', [SkillController::class, 'update']);
-Route::delete('/delete/skills/{id}', [SkillController::class, 'destroy']);
 
+################## Skills #############################
+Route::get('/skills', [SkillController::class, 'index']);
+Route::post('/add_skill', [SkillController::class, 'store']);
+Route::get('/show_skill/{skill}', [SkillController::class, 'show']);
+Route::put('/update_skill/{skill}', [SkillController::class, 'update']);
+Route::delete('/delete_skill/{skill}', [SkillController::class, 'destroy']);
+
+
+################## Project #############################
 Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('project/{project}', [ProjectController::class, 'show']);
+Route::post('add-project', [ProjectController::class, 'store']);
+Route::put('update-project/{project}', [ProjectController::class, 'update']);
+Route::delete('delete-project/{project}', [ProjectController::class, 'destroy']);
+
+
+################## Resume #############################
+Route::get('/resume', [ResumeController::class,'index']);
+Route::post('add-resume', [ResumeController::class,'store']);
+Route::get('resume/{resume}', [ResumeController::class,'show']);
+Route::put('update-resume/{resume}',[ResumeController::class, 'update']);
+Route::delete('delete-resume/{resume}',[ResumeController::class, 'destroy']);
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -21,7 +21,7 @@ class UserInfoResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-s-user-circle';
 
     protected static ?string $navigationLabel = 'About Me';
-    
+
     protected static ?string $modelLabel = 'My Information';
 
     public static function form(Form $form): Form
@@ -90,7 +90,7 @@ class UserInfoResource extends Resource
                             ->enableDownload()
                             ->required(),
                     ]),
-            
+
             ]);
     }
 

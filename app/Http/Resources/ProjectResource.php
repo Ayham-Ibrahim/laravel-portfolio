@@ -23,7 +23,7 @@ class ProjectResource extends JsonResource
             'link'          =>$this->link,
             'github_repo'   =>$this->github_repo,
             'image'         =>Storage::url($this->image),
-            'skills'        => SkillResource::collection($this->whenLoaded('skills'))
+            'skills'        => SkillResource::collection($this->skills),
         ];
     }
 }
