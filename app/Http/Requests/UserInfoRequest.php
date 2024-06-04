@@ -29,6 +29,7 @@ class UserInfoRequest extends FormRequest
             'city' => ['required','string'],
             'address' => ['required','string'],
             'website' => ['required','string'],
+            'email' => ['required','string'],
             'job_title' => ['required','string'],
             'first_image' => ['required','image','mimes:jpeg,png,jpg,gif'],
             'second_image' => ['required','image','mimes:jpeg,png,jpg,gif'],

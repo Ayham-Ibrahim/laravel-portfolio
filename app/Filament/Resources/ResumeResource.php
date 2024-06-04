@@ -27,6 +27,9 @@ class ResumeResource extends Resource
                     ->required(),
                 Forms\Components\DatePicker::make('to_date')
                     ->required(),
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('description')
                     ->required()
                     ->maxLength(255),
@@ -43,6 +46,8 @@ class ResumeResource extends Resource
                 Tables\Columns\TextColumn::make('from_date')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('to_date')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),

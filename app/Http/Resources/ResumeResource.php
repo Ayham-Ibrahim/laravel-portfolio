@@ -18,6 +18,7 @@ class ResumeResource extends JsonResource
         [
             'to-date'=>$this->to_date,
             'from-date'=>$this->from_date,
+            'title'=>$this->title,
             'description'=>$this->description,
             'institute'=>$this->institute,
 

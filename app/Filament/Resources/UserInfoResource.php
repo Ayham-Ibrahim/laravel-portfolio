@@ -51,6 +51,9 @@ class UserInfoResource extends Resource
                         Forms\Components\TextInput::make('website')
                             ->required()
                             ->maxLength(255),
+                        Forms\Components\TextInput::make('email')
+                            ->required()
+                            ->maxLength(255),
                         Forms\Components\FileUpload::make('cv')
                             ->preserveFilenames()
                             ->directory('cv')
@@ -112,6 +115,8 @@ class UserInfoResource extends Resource
                 Tables\Columns\TextColumn::make('address')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('job_title')
                     ->searchable(),

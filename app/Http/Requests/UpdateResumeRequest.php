@@ -24,6 +24,7 @@ class UpdateResumeRequest extends FormRequest
         return [
                 'to_date' => 'nullable|date',
                 'from_date' => 'nullable|date',
+                'title' => 'nullable|string|max:255',
                 'description' => 'nullable|string|max:1024',
                 'institute' => 'nullable|string|max:255',
         ];

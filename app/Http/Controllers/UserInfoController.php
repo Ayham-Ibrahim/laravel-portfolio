@@ -46,6 +46,7 @@ class UserInfoController extends Controller
                 'city'         => $request->city,
                 'address'      => $request->address,
                 'website'      => $request->website,
+                'email'      => $request->website,
                 'job_title'    => $request->job_title,
                 'first_image'  => $first_image_path,
                 'second_image' => $second_image_path,
@@ -87,6 +88,7 @@ class UserInfoController extends Controller
             $userInfo->city = $request->input('city') ?? $userInfo->city;
             $userInfo->address = $request->input('address') ?? $userInfo->address;
             $userInfo->website = $request->input('website') ?? $userInfo->website;
+            $userInfo->email = $request->input('email') ?? $userInfo->email;
             $userInfo->job_title = $request->input('job_title') ?? $userInfo->job_title;
             $userInfo->first_image = $first_image;
             $userInfo->second_image = $second_image;

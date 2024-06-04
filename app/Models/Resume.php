@@ -13,6 +13,7 @@ class Resume extends Model
     protected $fillable = [
         'to_date',
         'from_date',
+        'title',
         'description',
         'institute',
     ];

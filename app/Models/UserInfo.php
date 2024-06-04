@@ -18,6 +18,7 @@ class UserInfo extends Model
         'city',
         'address',
         'website',
+        'email',
         'job_title',
         'first_image',
         'second_image',

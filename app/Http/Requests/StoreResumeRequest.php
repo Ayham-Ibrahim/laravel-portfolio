@@ -24,6 +24,7 @@ class StoreResumeRequest extends FormRequest
         return [
             'to_date' => 'required|date',
             'from_date' => 'required|date',
+            'title' => 'required|string|max:255',
             'description' => 'required|string|max:1024',
             'institute' => 'required|string|max:255',
         ];

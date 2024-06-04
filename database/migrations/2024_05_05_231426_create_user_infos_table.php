@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('address');
             $table->string('website');
+            $table->string('email');
             $table->string('job_title');
             $table->string('first_image');
             $table->string('second_image');
