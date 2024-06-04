@@ -29,6 +29,7 @@ class UpdateUserInfoRequest extends FormRequest
             'city' => ['nullable','string'],
             'address' => ['nullable','string'],
             'website' => ['nullable','string'],
+            'email' => ['nullable','string'],
             'job_title' => ['nullable','string'],
             'first_image' => ['nullable','image','mimes:jpeg,png,jpg,gif'],
             'second_image' => ['nullable','image','mimes:jpeg,png,jpg,gif'],

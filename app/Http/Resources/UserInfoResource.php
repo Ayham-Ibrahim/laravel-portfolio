@@ -23,6 +23,7 @@ class UserInfoResource extends JsonResource
             'city'         => $this->city,
             'address'      => $this->address,
             'website'      => $this->website,
+            'email'      => $this->email,
             'job_title'    => $this->job_title,
             'first_image'  => Storage::url($this->first_image),
             'second_image' => Storage::url($this->second_image),

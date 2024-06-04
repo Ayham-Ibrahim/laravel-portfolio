@@ -39,6 +39,7 @@ class ResumeController extends Controller
             $resume = Resume::create([
                 'to_date' => $request->to_date,
                 'from_date' =>$request->from_date,
+                'title' => $request->title,
                 'description' => $request->description,
                 'institute' => $request->institute,
             ]);
@@ -70,6 +71,7 @@ class ResumeController extends Controller
         try {
             $resume->to_date= $request->input('to_date') ?? $resume->to_date;
             $resume->from_date= $request->input('from_date') ?? $resume->from_date;
+            $resume->title= $request->input('title') ?? $resume->title;
             $resume->description= $request->input('description') ?? $resume->description;
             $resume->institute= $request->input('institute') ?? $resume->institute;
             $resume->save();
