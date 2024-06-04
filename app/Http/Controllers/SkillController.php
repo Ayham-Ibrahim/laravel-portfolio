@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Requests\SkillRequest;
+use App\Http\Requests\UpdateSkillRequest;
 use Illuminate\Support\Facades\Log;
 use App\Http\Traits\UploadFileTrait;
 use App\Http\Resources\SkillResource;
