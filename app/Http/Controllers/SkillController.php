@@ -11,7 +11,6 @@ use App\Http\Traits\UploadFileTrait;
 use App\Http\Resources\SkillResource;
 use App\Http\Traits\ApiResponseTrait;
 use Illuminate\Support\Facades\Cache;
-use App\Http\Requests\UpdateSkillRequest;
 
 
 class SkillController extends Controller
